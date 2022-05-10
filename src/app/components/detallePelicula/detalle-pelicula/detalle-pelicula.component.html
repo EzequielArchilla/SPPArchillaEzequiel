@@ -1,0 +1,17 @@
+<div *ngIf="this.detallePelicula.id != 0;else sinDatos">
+
+<div class="card" style="width:200px">               
+        <div class="card-body">
+          <h4 class="card-title">{{this.detallePelicula.nombre}}</h4>
+          <p class="card-text">Nombre: {{this.detallePelicula.nombre}}</p>
+        </div>
+</div>
+</div>
+
+<ng-template #sinDatos>
+    <div class="card" style="width:200px">               
+        <div class="card-body">
+          <h4 class="card-title">Sin peliculas seleccionadas</h4>
+        </div>
+</div>
+</ng-template>
