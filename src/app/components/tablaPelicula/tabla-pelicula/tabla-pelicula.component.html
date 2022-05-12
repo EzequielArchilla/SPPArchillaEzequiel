@@ -6,9 +6,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pelicula of tabla">
+      <tr *ngFor="let pelicula of listaPeliculas">
         <th scope="row">{{pelicula.nombre}}</th>
-        <td><img [src]="pelicula.fotoDePelicula" alt=""></td>
+        <td><img [src]="pelicula.fotoDePelicula" alt="" height="60px"></td>
         <td><button class="btn-info" (click)="verDetalle(pelicula)">Detalle</button></td>
       </tr>
     </tbody>

@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetallePeliculaComponent } from './components/detallePelicula/detalle-pelicula/detalle-pelicula.component';
 import { TablaPaisesComponent } from './components/tablaPaises/tabla-paises/tabla-paises.component';
+import { TablaActorComponent } from './components/tablaActor/tabla-actor/tabla-actor.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TablaPaisesComponent } from './components/tablaPaises/tabla-paises/tabl
     TablaPeliculaComponent,
     DetallePeliculaComponent,
     TablaPaisesComponent,
+    TablaActorComponent,
   ],
   imports: [
     BrowserModule,

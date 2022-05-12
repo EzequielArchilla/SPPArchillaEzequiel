@@ -1,3 +1,5 @@
+import { Actor } from '../actor/actor';
+
 export class Pelicula {
   id: number;
   nombre: string;
@@ -5,6 +7,7 @@ export class Pelicula {
   fechaDeEstreno: Date;
   cantidadDePublico: number;
   fotoDePelicula: string;
+  actores: Actor[];
 
   constructor() {
     this.id = 0;
@@ -13,6 +16,7 @@ export class Pelicula {
     this.fechaDeEstreno = new Date();
     this.cantidadDePublico = 0;
     this.fotoDePelicula = '';
+    this.actores = [];
   }
 }
 

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import {
+  AngularFireStorage,
+  AngularFireUploadTask,
+} from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +11,15 @@ export class ImagenFirebaseService {
   constructor(private fireStorage: AngularFireStorage) {}
 
   public subirArchivo(archivo: File) {
-    return this.fireStorage.upload('/fotosPerfil/' + archivo.name, archivo);
+    return this.fireStorage.upload('/portadas/' + archivo.name, archivo);
   }
 
   public obtenerReferencia(archivo: string) {
-    return this.fireStorage.ref('fotosPerfil/' + archivo);
+    return this.fireStorage.ref('/portadas/' + archivo);
   }
 
   public getAllFiles() {
-    let asd = this.fireStorage.ref('fotosPerfil/').listAll();
+    let asd = this.fireStorage.ref('/portadas/').listAll();
     return asd;
   }
 

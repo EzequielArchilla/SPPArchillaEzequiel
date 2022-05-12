@@ -2,7 +2,7 @@
   <body class="bg-light">
     
 <div class="container">
-  <div class="py-5 text-center">
+  <div class="py-5 mb-4 text-center bg-lightBlue">
     <h2>Complete los datos del actor</h2>
 </div>
 
@@ -11,28 +11,30 @@
       <app-tabla-paises (paisOut)="asignarPaisSeleccionado($event)"></app-tabla-paises>
     </div>
     <div class="col-md-8 order-md-1">
-      <h4 class="mb-3">Informacion basica</h4>
-      <form class="needs-validation" novalidate>
+      <h4 class="mb-3 text-primary">Informacion basica</h4>
+      <form [formGroup]="actorForm" (ngSubmit)="crearActor()" class="needs-validation">
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nombre</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Valid first name is required.
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" formControlName="nombre">
+            <div class="invalid-feedback" *ngIf="this.actorForm.controls['nombre'].errors?.['required'] &&
+            this.actorForm.controls['nombre'].touched">
+            El nombre es requerido
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Apellido</label>
-            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Valid last name is required.
+            <input type="text" class="form-control" id="lastName" placeholder="" value=""  formControlName="apellido" >
+            <div class="invalid-feedback" *ngIf="this.actorForm.controls['apellido'].errors?.['required'] &&
+            this.actorForm.controls['apellido'].touched">
+            El apellido es requerido
             </div>
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="email">Email <span class="text-muted">(Optional)</span></label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="you@example.com" formControlName="email">
           <div class="invalid-feedback">
             Please enter a valid email address for shipping updates.
           </div>
@@ -40,27 +42,29 @@
 
         <div class="mb-3">
           <label for="address">Direccion</label>
-          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+          <input type="text" class="form-control" id="address" placeholder="1234 Main St" formControlName="direccion">
           <div class="invalid-feedback">
             Please enter your shipping address.
           </div>
-        </div>
+        </div> 
 
         <div class="mb-3">
-          <label for="address2">Telefono<span class="text-muted">(Optional)</span></label>
-          <input type="tel" class="form-control" id="address2" placeholder="Apartment or suite">
+          <label for="address2">Telefono</label>
+          <input type="tel" class="form-control" id="address2" placeholder="+54" formControlName="telefono">
         </div>
 
+        <br>
+        <button type="submit" 
+        class="btn btn-primary btn-block" 
+        [disabled]="actorForm.invalid">
+        Aceptar
+      </button>
+        <!-- <button class="btn btn-lg btn-success btn-block"  (click)="crearActor()">Crear</button> -->
       </form>
     </div>
   </div>
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; Ezequiel Archilla 2022</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
   </footer>
 </div>

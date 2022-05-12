@@ -17,11 +17,11 @@ export class PeliculaFirebaseService {
     this.peliculasRef = this.db.collection('peliculas');
   }
 
-  public crearUsuario(pelicula: Pelicula) {
+  public crearPelicula(pelicula: Pelicula) {
     return this.peliculasRef.add({ ...pelicula });
   }
 
-  public obtenerUsuario() {
+  public obtenerPelicula() {
     return this.peliculasRef.valueChanges() as Observable<Pelicula[]>;
   }
 
@@ -32,8 +32,6 @@ export class PeliculaFirebaseService {
   public delete(id: string) {
     return this.peliculasRef.doc(id).delete();
   }
-
-  public async validarUsuarioEspecialista() {}
 
   public obtenerColeccionPeliculas() {
     return this.peliculasRef.snapshotChanges().pipe(

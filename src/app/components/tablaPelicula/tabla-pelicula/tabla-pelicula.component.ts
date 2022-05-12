@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Pelicula, tipoPelicula } from 'src/app/class/pelicula/pelicula';
+import { PeliculaFirebaseService } from 'src/app/services/peliculaFirebase/pelicula-firebase.service';
 
 @Component({
   selector: 'app-tabla-pelicula',
@@ -8,43 +9,13 @@ import { Pelicula, tipoPelicula } from 'src/app/class/pelicula/pelicula';
 })
 export class TablaPeliculaComponent implements OnInit {
   @Output() detallePelicula: EventEmitter<Pelicula> = new EventEmitter();
+  listaPeliculas: Pelicula[] = [];
 
-  tabla: Pelicula[] = [
-    {
-      id: 1,
-      nombre: 'movie1',
-      tipo: tipoPelicula.terror,
-      fechaDeEstreno: new Date(),
-      cantidadDePublico: 100,
-      fotoDePelicula: '../../favicon.ico',
-    },
-    {
-      id: 2,
-      nombre: 'movie2',
-      tipo: tipoPelicula.terror,
-      fechaDeEstreno: new Date(),
-      cantidadDePublico: 22,
-      fotoDePelicula: '../../favicon.ico',
-    },
-    {
-      id: 3,
-      nombre: 'movie3',
-      tipo: tipoPelicula.terror,
-      fechaDeEstreno: new Date(),
-      cantidadDePublico: 676,
-      fotoDePelicula: '../../favicon.ico',
-    },
-    {
-      id: 4,
-      nombre: 'movie4',
-      tipo: tipoPelicula.terror,
-      fechaDeEstreno: new Date(),
-      cantidadDePublico: 5777,
-      fotoDePelicula: '../../favicon.ico',
-    },
-  ];
-
-  constructor() {}
+  constructor(private peliculaFire: PeliculaFirebaseService) {
+    this.peliculaFire.obtenerPelicula().subscribe((peliculas) => {
+      this.listaPeliculas = peliculas;
+    });
+  }
 
   ngOnInit(): void {}
 

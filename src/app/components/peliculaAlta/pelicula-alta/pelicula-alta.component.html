@@ -1,1 +1,65 @@
-<p>pelicula-alta works!</p>
+
+  <body class="bg-light">
+    
+    <div class="container">
+      <div class="py-5 mb-4 text-center bg-lightBlue">
+        <h2>Complete los datos de la Pelicula</h2>
+    </div>
+    
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <app-tabla-actor (actorSeleccionado)="asignarActor($event)"></app-tabla-actor>  
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3 text-primary">Informacion basica</h4>
+          <form [formGroup]="peliculaForm" (ngSubmit)="asignarParametrosPelicula()" class="needs-validation">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                <div class="invalid-feedback" *ngIf="this.peliculaForm.controls['nombre'].errors?.['required'] &&
+                this.peliculaForm.controls['nombre'].touched">
+                El titulo es requerido
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="fechaDeEstreno">Fecha de estreno</label>
+                <input type="date" class="form-control" id="fechaDeEstreno" formControlName="fechaDeEstreno" >
+                <div class="invalid-feedback" *ngIf="this.peliculaForm.controls['fechaDeEstreno'].errors?.['required'] &&
+                this.peliculaForm.controls['fechaDeEstreno'].touched">
+                La fecha de estreno es requerida
+                </div>
+              </div>
+            </div>
+    
+            <div class="mb-3">
+              <label for="cantidadDePublico">Cantidad de publico</label>
+              <input type="number" class="form-control" id="cantidadDePublico" formControlName="cantidadDePublico">
+              <div class="invalid-feedback">
+                Ingrese una cantidad de publico valida
+              </div>
+            </div>
+    
+            <div class="mb-3">
+              <label for="fotoDePelicula">Imagen de la pelicula</label>
+              <input type="file" class="form-control" id="fotoDePelicula" formControlName="fotoDePelicula" accept="*.png.jpg" (change)="onChange($event)">
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div> 
+
+            <br>
+            <button type="submit" 
+            class="btn btn-primary btn-block" 
+            [disabled]="peliculaForm.invalid || this.nuevaPelicula.fotoDePelicula == ''">
+            Aceptar
+          </button>
+            <!-- <button class="btn btn-lg btn-success btn-block"  (click)="crearActor()">Crear</button> -->
+          </form>
+        </div>
+      </div>
+    
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; Ezequiel Archilla 2022</p>
+      </footer>
+    </div>
